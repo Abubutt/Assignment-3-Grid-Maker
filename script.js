@@ -3,14 +3,44 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected; 
 
+let grid = document.getElementById('grid');
+
 // Add a row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
-}
+   if(numCols === 0){ 
+    let newRow = grid.insertRow(-1);
+    let newCell = newRow.insertCell(-1);
+    numRows++;
+    numCols++;
+   }else{ 
+        let newRow = grid.insertRow(-1);
+            for (var j = 0; j < numCols; j++) {
+                newRow.insertCell(j);
+            }  
+        numRows++;
+     }
+   }
 
 // Add a column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    if(numRows == 0){
+        let newRow = grid.insertRow(-1);
+        let newCell = newRow.insertCell(-1);
+        let row = document.getElementsByTagName('tr')
+        row.innerHTML += document.createElement('td');
+        numRows++;
+        numCols++;
+    }
+    else{
+        let rows = document.querySelectorAll('tr');
+        rows = Array.from(rows);
+        rows = rows.slice(1,rows.length);
+        rows.forEach((row) => {
+            let z = document.createElement("td");
+            row.appendChild(z);
+        });
+        numCols++;
+    }
 }
 
 // Remove a row
