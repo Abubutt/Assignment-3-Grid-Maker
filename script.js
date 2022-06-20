@@ -10,12 +10,20 @@ function addR() {
    if(numCols === 0){ 
     let newRow = grid.insertRow(-1);
     let newCell = newRow.insertCell(-1);
+	newCell.style.backgroundColor = "White";
+	newCell.onclick = function() {
+		newCell.style.backgroundColor = colorSelected;
+	}
     numRows++;
     numCols++;
    }else{ 
         let newRow = grid.insertRow(-1);
             for (var j = 0; j < numCols; j++) {
-                newRow.insertCell(j);
+                let newCell = newRow.insertCell(j);
+				newCell.style.backgroundColor = "White"
+				newCell.onclick = function() {
+					newCell.style.backgroundColor = colorSelected;
+				}
             }  
         numRows++;
      }
@@ -26,6 +34,10 @@ function addC() {
     if(numRows == 0){
         let newRow = grid.insertRow(-1);
         let newCell = newRow.insertCell(-1);
+		newCell.style.backgroundColor = "White"
+		newCell.onclick = function() {
+			newCell.style.backgroundColor = colorSelected;
+		}
         let row = document.getElementsByTagName('tr')
         row.innerHTML += document.createElement('td');
         numRows++;
@@ -37,6 +49,10 @@ function addC() {
         rows = rows.slice(1,rows.length);
         rows.forEach((row) => {
             let z = document.createElement("td");
+			z.style.backgroundColor = "White"
+			z.onclick = function() {
+				z.style.backgroundColor = colorSelected;
+			}
             row.appendChild(z);
         });
         numCols++;
@@ -68,15 +84,32 @@ function selectColor(){
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    for(let i = 1; i <= numRows; i++) {
+        for(let j = 0; j < numCols; j++) {
+            let currCell = document.getElementsByTagName("tr")[i].getElementsByTagName("td")[j];
+            if(currCell.style.backgroundColor === "white") {
+                currCell.style.backgroundColor = colorSelected;
+            }
+        }
+    }
 }
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    for(let i = 1; i <= numRows; i++) {
+        for(let j = 0; j < numCols; j++) {
+            let currCell = document.getElementsByTagName("tr")[i].getElementsByTagName("td")[j];
+            currCell.style.backgroundColor = colorSelected;
+        }
+    }
 }
 
 // Clear all cells
 function clearAll(){
-    alert("Clicked Clear All"); // Replace this line with your code.
+   for(let i = 1; i <= numRows; i++) {
+        for(let j = 0; j < numCols; j++) {
+            let currCell = document.getElementsByTagName("tr")[i].getElementsByTagName("td")[j];
+            currCell.style.backgroundColor = "white";
+        }
+    }
 }
