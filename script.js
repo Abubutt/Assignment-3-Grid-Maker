@@ -45,12 +45,19 @@ function addC() {
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    grid.deleteRow(1);
 }
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+       let rows = document.querySelectorAll('tr');
+       rows = Array.from(rows);
+       rows = rows.slice(1,rows.length);
+       rows.forEach((row) => {
+           row.deleteCell(0);
+       });
+       numCols--;
+
 }
 
 // Set global variable for selected color
